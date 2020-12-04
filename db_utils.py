@@ -3,7 +3,7 @@ import psycopg2
 
 class Database:
     def __init__(self, host="localhost",
-                 database="gmql_meta_new16_tommaso",
+                 database="gmql_meta_new16_geco_agent",
                  user="geco",
                  password="geco78",
                  port=5432):

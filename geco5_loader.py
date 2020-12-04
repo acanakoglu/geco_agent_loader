@@ -14,14 +14,13 @@ if len(sys.argv) == 4:
     table = sys.argv[3]
 else:
     # input!!!!
-    directory = '/Users/canakoglu/GMQL-sources/GeCo_5_0/input/'
+    directory = '/Users/canakoglu/GMQL-sources/geco_agent_loader/input/'
     database_name = 'GRCh38_TCGA_gene_expression_2018_12'
-    table = 'gene_expression_arif'
-
+    table = 'arif.gene_expression_arif_test1'
 binning = False
 bin_size = 100000
 
-is_reduced_columns = True
+is_reduced_columns = False
 reduced_columns = {0, 1, 2, 3, 8, 9}
 
 pos_chr = 0
@@ -45,7 +44,7 @@ def lines(files, database):
         # print(file_name, item_id)
 
         with open(reg_file) as f:
-            for line in f:
+            for line_number, line in enumerate(f):
                 # if aaa % 1000 == 0 :
                 #     print(aaa , bbb)
 
@@ -59,7 +58,9 @@ def lines(files, database):
                     # NOTE: becarefull about the new chromsomes
                     #                 print(file_name, splitted[0])
                     # gives error
-                    pass
+                    # SKIP THE LINE
+                    print(f'ERROR in the chromosome File:{file_name}:{line_number}, error: {line_split[pos_chr]}')
+                    continue
                 else:
                     line_split[pos_chr] = str(chromosomes[line_split[0]])
 
